@@ -141,6 +141,7 @@ func (di *DubboInvoker) Invoke(ctx context.Context, ivc base.Invocation) result.
 	rest := &result.RPCResult{}
 	timeout := di.getTimeout(inv)
 	if async {
+		//todo
 		if callBack, ok := inv.CallBack().(func(response common.CallbackResponse)); ok {
 			res.Err = di.client.AsyncRequest(&ivc, url, timeout, callBack, rest)
 		} else {
@@ -150,6 +151,7 @@ func (di *DubboInvoker) Invoke(ctx context.Context, ivc base.Invocation) result.
 		if inv.Reply() == nil {
 			res.Err = base.ErrNoReply
 		} else {
+			//todo
 			res.Err = di.client.Request(&ivc, url, timeout, rest)
 		}
 	}
